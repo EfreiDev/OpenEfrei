@@ -8,7 +8,6 @@ public class OpenefreiApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(OpenefreiApplication.class, args);
-		System.out.println("Hello World!");
 	}
 
 }
