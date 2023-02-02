@@ -10,9 +10,18 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	private boolean isAdmin;
 	private String username;
 	private String email;
 
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+	
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+	
 	public String getUsername() {
 		return username;
 	}
