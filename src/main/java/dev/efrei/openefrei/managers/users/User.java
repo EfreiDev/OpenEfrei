@@ -1,15 +1,14 @@
 package dev.efrei.openefrei.managers.users;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
 @Entity
+@Table(name = "users")
 public class User {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	
+	@Column(nullable = false, unique = true, length = 45)
 	private boolean isAdmin;
 	private String username;
 	private String email;
