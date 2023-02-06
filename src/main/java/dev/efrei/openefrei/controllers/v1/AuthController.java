@@ -11,11 +11,8 @@ import dev.efrei.openefrei.managers.users.UserService;
 @RestController
 public class AuthController {
   private UserService userService;
-  private BCryptPasswordEncoder bCryptPasswordEncoder;
-
   public AuthController(UserService userService, BCryptPasswordEncoder bCryptPasswordEncoder) {
     this.userService = userService;
-    this.bCryptPasswordEncoder = bCryptPasswordEncoder;
   }
 
   @PostMapping("/register")
@@ -25,7 +22,7 @@ public class AuthController {
 
   @PostMapping("/login")
   public void login(@RequestBody User loginUser) {
-    User user = userService.findByUsername(loginUser.getUsername());
+    User user = userService.findByEfreiID(loginUser.getEfreiID());
     if (user != null) {
       // Create encrypted cookie and set it in response
     } else {

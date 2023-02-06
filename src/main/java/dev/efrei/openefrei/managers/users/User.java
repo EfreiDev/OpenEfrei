@@ -1,5 +1,12 @@
 package dev.efrei.openefrei.managers.users;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -7,12 +14,20 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
-	@Column(nullable = false, unique = true, length = 45)
+	@Column(nullable = false, unique = true)
+	private long efreiID;
 	private boolean isAdmin;
-	private String username;
+	@Column(name= "first_name", nullable = false, length = 20)
+	private String firstName;
+	@Column(name="last_name", nullable = false, length = 20)
+	private String lastName;
+	@Column(nullable = false, unique = true, length = 45)
 	private String email;
 
+	public long getID() {
+		return id;
+	}
+	
 	public boolean isAdmin() {
 		return isAdmin;
 	}
@@ -21,14 +36,30 @@ public class User {
 		this.isAdmin = isAdmin;
 	}
 	
-	public String getUsername() {
-		return username;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setFirstName(String fistname) {
+		this.firstName = fistname;
+	}
+	
+	public String getLastName() {
+		return lastName;
 	}
 
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public long getEfreiID() {
+		return efreiID;
+	}
+
+	public void setEfreiID(long efreiID) {
+		this.efreiID = efreiID;
+	}
+	
 	public String getEmail() {
 		return email;
 	}
