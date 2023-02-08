@@ -1,4 +1,4 @@
-package dev.efrei.openefrei.controllers;
+package dev.efrei.openefrei.controllers.v1;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 @RestController
 public class ErrorHandlerController implements ErrorController {
 
-	@RequestMapping("/error")
+	@RequestMapping("/v1/error")
 	public String handleError(HttpServletRequest request) {
 	    Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
 	    

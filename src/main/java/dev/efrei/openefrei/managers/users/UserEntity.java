@@ -9,21 +9,32 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class UserEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	@Column(nullable = false, unique = true)
-	private long efreiID;
+	@Column(name= "efreiID", nullable = false, unique = true)
+	private String efreiID;
+	@Column(name= "is_admin", unique = false)
 	private boolean isAdmin;
 	@Column(name= "first_name", nullable = false, length = 20)
 	private String firstName;
 	@Column(name="last_name", nullable = false, length = 20)
 	private String lastName;
-	@Column(nullable = false, unique = true, length = 45)
+	@Column(name="email", nullable = false, unique = true, length = 45)
 	private String email;
-
+	@Column(name="password", nullable = false, unique = false, length = 50)
+	private String password;
+	
+	public String getPassword() {
+		return password;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 	public long getID() {
 		return id;
 	}
@@ -52,11 +63,11 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public long getEfreiID() {
+	public String getEfreiID() {
 		return efreiID;
 	}
 
-	public void setEfreiID(long efreiID) {
+	public void setEfreiID(String efreiID) {
 		this.efreiID = efreiID;
 	}
 	

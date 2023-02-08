@@ -10,7 +10,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.annotation.Rollback;
 
-import dev.efrei.openefrei.managers.users.User;
+import dev.efrei.openefrei.managers.users.UserEntity;
 import dev.efrei.openefrei.managers.users.UserRepository;
  
 @DataJpaTest
@@ -26,16 +26,16 @@ public class UserRepositoryTests {
     
     @Test
     public void testCreateUser() {
-        User user = new User();
-        user.setEmail("test@team.openefrei.test");
+        UserEntity user = new UserEntity();
         user.setAdmin(false);
         user.setEmail("john.smith@team.openefrei.test");
         user.setFirstName("John");
+        user.setPassword("lorem");
         user.setLastName("Doe");
-        user.setEfreiID(20280000);
-        User savedUser = repo.save(user);
+        user.setEfreiID("20280000");
+        UserEntity savedUser = repo.save(user);
          
-        User existUser = entityManager.find(User.class, savedUser.getID());
+        UserEntity existUser = entityManager.find(UserEntity.class, savedUser.getID());
          
         assertThat(user.getEmail()).isEqualTo(existUser.getEmail());
          
