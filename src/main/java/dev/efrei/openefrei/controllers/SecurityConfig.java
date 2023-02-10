@@ -40,8 +40,7 @@ public class SecurityConfig {
 		 * "/v1/error").permitAll() .anyRequest().authenticated() ) .logout((logout) ->
 		 * logout.permitAll());
 		 */
-
-		http.authorizeHttpRequests((requests) -> requests.anyRequest().permitAll())
+		http.csrf().disable().authorizeHttpRequests((requests) -> requests.anyRequest().permitAll())
 				.logout((logout) -> logout.permitAll());
 		return http.build();
 	}

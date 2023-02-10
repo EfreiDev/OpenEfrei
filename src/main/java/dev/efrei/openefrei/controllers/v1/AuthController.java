@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.efrei.openefrei.managers.users.UserEntity;
 import dev.efrei.openefrei.managers.users.UserService;
+import dev.efrei.openefrei.utils.Response;
 
 @RestController
 public class AuthController {
@@ -17,12 +18,17 @@ public class AuthController {
 	}
 
 	@RequestMapping("/v1/auth/register")
-	public void register(@RequestBody UserEntity user) {
-		userService.save(user);
+	public String register(@RequestBody UserEntity user) {
+		if (userService.findByEfreiID(user.getEfreiID()) == null && userService.findByEmail(user.getEmail()) == null) {
+			userService.save(user);
+			return Response.get(200, "Success, user was created");
+		} else {
+			return Response.get(409, "User already exist");
+		}
 	}
 
 	@RequestMapping("/v1/auth/login")
-	public void login(@RequestBody UserEntity loginUser) {
+	public void login(@RequestBody UserEntity loginUser) { 
 		UserEntity user = userService.findByEfreiID(loginUser.getEfreiID());
 		if (user != null) {
 			// Create encrypted cookie and set it in response

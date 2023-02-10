@@ -18,6 +18,10 @@ public class UserService implements UserDetailsService {
 	  public UserEntity findByEfreiID(String efreiID) {
 	    return userRepository.findByEfreiID(efreiID);
 	  }
+	  
+	  public UserEntity findByEmail(String email) {
+		  return userRepository.findByEmail(email);
+	  }
 
 	  public UserEntity save(UserEntity user) {
 	    return userRepository.save(user);
