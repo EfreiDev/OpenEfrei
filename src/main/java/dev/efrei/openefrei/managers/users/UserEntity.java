@@ -24,7 +24,7 @@ public class UserEntity {
 	private String lastName;
 	@Column(name="email", nullable = false, unique = true, length = 45)
 	private String email;
-	@Column(name="password", nullable = false, unique = false, length = 50)
+	@Column(name="password", nullable = false, unique = false, length = 60)
 	private String password;
 	
 	public String getPassword() {
