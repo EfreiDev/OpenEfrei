@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import dev.efrei.openefrei.managers.security.jwt.Auth;
 import dev.efrei.openefrei.managers.users.UserEntity;
 import dev.efrei.openefrei.managers.users.UserService;
 import dev.efrei.openefrei.utils.JwtUtils;
@@ -56,11 +57,11 @@ public class AuthController {
 	@GetMapping("/v1/auth/me")
 	public ResponseEntity<String> me(HttpServletRequest request) {
 		String jwt = jwtUtils.getJwtFromCookies(request);
-		if (jwt == null) {
-			return ResponseEntity.status(401).body(Response.get(401, "You need to be logged"));
-		} else {
+		if(new Auth(userService).isConnected(jwt)) {
 			UserEntity user = userService.findByEfreiID(jwtUtils.getEfreiIDFromJwtToken(jwt));
 			return ResponseEntity.status(200).body(Response.get(200, "Currently logged as " + user.getEmail()));
+		} else {
+			return ResponseEntity.status(401).body(Response.get(401, "You need to be logged"));
 		}
 	}
 	

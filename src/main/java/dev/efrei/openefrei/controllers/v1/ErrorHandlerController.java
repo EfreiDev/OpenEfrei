@@ -24,7 +24,7 @@ public class ErrorHandlerController implements ErrorController {
 				return ResponseEntity.status(statusCode).body(Response.get(statusCode, error.getReasonPhrase()));
 			}
 		}
-		return ResponseEntity.status(12004).body(Response.get(12004, HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase()));
+		return ResponseEntity.status(400).body(Response.get(400, HttpStatus.BAD_REQUEST.getReasonPhrase()));
 	}
 
 }
